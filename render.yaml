@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: rag-document-parser
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GOOGLE_API_KEY
+        value: AIzaSyCdv_P2R4sjaVy_Cd5fQ3GROjYzZJfD4FI
+      - key: API_KEY
+        value: your-secure-api-key-here  # Change this to a secure API key
+      - key: PYTHONPATH
+        value: .
+    healthCheckPath: /health
+    plan: starter  # or "free" if available
